@@ -1,12 +1,14 @@
 package com.cihan.taskgate.model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
-@Data
 @Entity
+@Getter
+@Setter
 public class Task {
 
     @Id
@@ -25,6 +27,4 @@ public class Task {
 
     @ManyToOne
     private User member;
-
-
 }

@@ -1,8 +1,10 @@
 package com.cihan.taskgate.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class RoleDTO {
 
     private long id;

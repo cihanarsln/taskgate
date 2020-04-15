@@ -15,7 +15,7 @@ public interface TaskMapper {
     Task toTask(TaskDTO taskDTO);
 
     @Named("toTaskDTO")
-    TaskDTO taskDTO(Task task);
+    TaskDTO toTaskDTO(Task task);
 
     @IterableMapping(qualifiedByName = "toTask")
     List<Task> toTaskList(List<TaskDTO> taskDTOList);

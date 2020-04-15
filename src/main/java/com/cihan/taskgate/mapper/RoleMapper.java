@@ -15,7 +15,7 @@ public interface RoleMapper {
     Role toRole(RoleDTO roleDTO);
 
     @Named("toRoleDTO")
-    RoleDTO roleDTO(Role role);
+    RoleDTO toRoleDTO(Role role);
 
     @IterableMapping(qualifiedByName = "toRole")
     List<Role> toRoleList(List<RoleDTO> roleDTOList);
