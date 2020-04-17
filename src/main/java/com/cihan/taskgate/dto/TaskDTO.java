@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,7 +17,7 @@ public class TaskDTO {
     private Date dueDate;
     private Date finishDate;
     private int difficulty;
-    private UserDTO manager;
-    private UserDTO member;
+    private Set<UserDTO> managers;
+    private Set<UserDTO> members;
 
 }

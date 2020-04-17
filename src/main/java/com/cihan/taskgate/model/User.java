@@ -20,7 +20,7 @@ public class User {
     private String name;
     private String surname;
 
-    @OneToMany
+    @ManyToMany
     private Set<Role> roles;
 
 }

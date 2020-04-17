@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,9 +23,9 @@ public class Task {
     private Date finishDate;
     private int difficulty;
 
-    @ManyToOne
-    private User manager;
+    @ManyToMany
+    private Set<User> managers;
 
-    @ManyToOne
-    private User member;
+    @ManyToMany
+    private Set<User> members;
 }
