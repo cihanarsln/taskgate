@@ -14,6 +14,12 @@ public interface TaskService {
 
     List<TaskDTO> findAll();
 
+    List<TaskDTO> findAllByMember_Username(String username);
+
+    List<TaskDTO> findAllByMember_Id(long id);
+
+    TaskDTO finishTask(long id);
+
     void deleteById(long id);
 
 }

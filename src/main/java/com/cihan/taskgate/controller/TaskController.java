@@ -32,6 +32,18 @@ public class TaskController {
         return taskService.findAll();
     }
 
+    @GetMapping("/member")
+    @ResponseBody
+    public List<TaskDTO> findAllByMembers(@RequestParam String username){
+        return taskService.findAllByMember_Username(username);
+    }
+
+    @PatchMapping("/finish")
+    @ResponseBody
+    public TaskDTO finishTask(@RequestParam long id){
+        return taskService.finishTask(id);
+    }
+
     @DeleteMapping("/delete")
     public void deleteById(@RequestParam("id") long id){
         taskService.deleteById(id);
