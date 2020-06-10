@@ -1,5 +1,6 @@
 package com.cihan.taskgate.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,8 +18,12 @@ public class Task {
 
     private String title;
     private String description;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Zagreb")
     private Date startDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Zagreb")
     private Date dueDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="Europe/Zagreb")
     private Date finishDate;
     private int difficulty;
 

@@ -34,8 +34,14 @@ public class TaskController {
 
     @GetMapping("/member")
     @ResponseBody
-    public List<TaskDTO> findAllByMembers(@RequestParam String username){
+    public List<TaskDTO> findAllByMember_Username(@RequestParam String username){
         return taskService.findAllByMember_Username(username);
+    }
+
+    @GetMapping("/member/id")
+    @ResponseBody
+    public List<TaskDTO> findAllByMember_Id(@RequestParam long memberId){
+        return taskService.findAllByMember_Id(memberId);
     }
 
     @PatchMapping("/finish")
