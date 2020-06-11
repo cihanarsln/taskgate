@@ -3,10 +3,12 @@ package com.cihan.taskgate.controller;
 import com.cihan.taskgate.dto.UserDTO;
 import com.cihan.taskgate.service.base.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/taskgate/user")
 @RestController
 public class UserController {
@@ -20,12 +22,14 @@ public class UserController {
         return userService.save(userDTO);
     }
 
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/id")
     @ResponseBody
     public UserDTO findById(@RequestParam("id") long id){
         return userService.findById(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     @ResponseBody
     public List<UserDTO> findAll(){
