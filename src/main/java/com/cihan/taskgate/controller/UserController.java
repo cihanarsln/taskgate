@@ -22,14 +22,14 @@ public class UserController {
         return userService.save(userDTO);
     }
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/id")
     @ResponseBody
     public UserDTO findById(@RequestParam("id") long id){
         return userService.findById(id);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/all")
     @ResponseBody
     public List<UserDTO> findAll(){

@@ -20,7 +20,7 @@ public class User {
     private String name;
     private String surname;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
 }

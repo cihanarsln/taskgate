@@ -1,5 +1,6 @@
 package com.cihan.taskgate.auth;
 
+import com.cihan.taskgate.model.Role;
 import com.cihan.taskgate.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,8 +9,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
 
 @Component
@@ -45,18 +48,22 @@ public class JwtTokenUtil {
     }
 
     public String generateToken(User user) {
-        return doGenerateToken(user.getUsername());
+        return doGenerateToken(user);
     }
 
-    private String doGenerateToken(String subject) {
+    private String doGenerateToken(User user) {
 
-        Claims claims = Jwts.claims().setSubject(subject);
-        claims.put("scopes", Arrays.asList(new SimpleGrantedAuthority("USER")));
+        Claims claims = Jwts.claims().setSubject(user.getUsername());
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        for (Role role: user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        claims.put("scopes", Arrays.asList(authorities));
 
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuer("cihanca")
+                .setIssuer(SIGNING_KEY)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_VALIDITY_SECONDS))
                 .signWith(SignatureAlgorithm.HS256, SIGNING_KEY)

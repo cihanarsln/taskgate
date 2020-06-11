@@ -23,7 +23,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
 
-
         List<SimpleGrantedAuthority> scopeList=new ArrayList<>();
         for (Role role : user.getRoles()) {
             scopeList.add(new SimpleGrantedAuthority(role.getName()));

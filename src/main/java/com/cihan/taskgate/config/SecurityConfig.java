@@ -48,8 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/taskgate/users").hasAuthority("USER")
-                .antMatchers("/taskgate/task").permitAll()
                 .antMatchers("/token/*", "/taskgate/token").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -62,7 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public BCryptPasswordEncoder encoder(){
-
         return new BCryptPasswordEncoder();
     }
 
